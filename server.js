@@ -72,15 +72,13 @@ app.use(
     origin: [
       "https://port-0-bookclub-backend-lzgqjytn6cca1780.sel4.cloudtype.app",
       "https://web-bookclub-frontend-lzgqjytn6cca1780.sel4.cloudtype.app",
-      "http://localhost:3000",
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     preflightContinue: false,
     optionsSuccessStatus: 204,
     credentials: true,
   })
-);
-app.use('/', homeRouter);
+);app.use('/', homeRouter);
 app.use('/auth', authRouter);
 app.use('/books', booksRouter);
 app.use('/members', memberRouter);
