@@ -8,6 +8,7 @@ const { createClient } = require('redis');
 const RedisStore = require('connect-redis').default;
 const dotenv = require('dotenv');
 dotenv.config();
+const cors = require('cors');
 
 const redisClient = createClient({
   url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
@@ -66,7 +67,19 @@ const sessionOption = {
 app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(
+  cors({
+    origin: [
+      "https://port-0-bookclub-backend-lzgqjytn6cca1780.sel4.cloudtype.app",
+      "https://web-bookclub-frontend-lzgqjytn6cca1780.sel4.cloudtype.app",
+      "http://localhost:3000",
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true,
+  })
+);
 app.use('/', homeRouter);
 app.use('/auth', authRouter);
 app.use('/books', booksRouter);
