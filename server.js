@@ -9,6 +9,7 @@ const RedisStore = require('connect-redis').default;
 const dotenv = require('dotenv');
 dotenv.config();
 const cors = require('cors');
+const http = require('http');
 
 const redisClient = createClient({
   url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
@@ -33,6 +34,13 @@ const passportConfig = require('./passport');
 const app = express();
 passportConfig();
 app.set('port', 3001);
+
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-origin', 'https://web-bookclub-frontend-lzgqjytn6cca1780.sel4.cloudtype.app'); 
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // 모든 HTTP 메서드 허용
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); // 클라이언트와 서버 간에 쿠키 주고받기 허용
+  next();
+});
 
 sequelize.sync({ force: false })
   .then(() => {
@@ -69,13 +77,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   cors({
-    origin: [
-      "https://port-0-bookclub-backend-lzgqjytn6cca1780.sel4.cloudtype.app",
-      "https://web-bookclub-frontend-lzgqjytn6cca1780.sel4.cloudtype.app",
-    ],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
+    origin: true,
     credentials: true,
   })
 );
