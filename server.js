@@ -9,7 +9,6 @@ const RedisStore = require('connect-redis').default;
 const dotenv = require('dotenv');
 dotenv.config();
 const cors = require('cors');
-const http = require('http');
 
 const redisClient = createClient({
   url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
