@@ -78,7 +78,8 @@ app.use(
     optionsSuccessStatus: 204,
     credentials: true,
   })
-);app.use('/', homeRouter);
+);
+app.use('/api/guests', homeRouter);
 app.use('/auth', authRouter);
 app.use('/books', booksRouter);
 app.use('/members', memberRouter);
