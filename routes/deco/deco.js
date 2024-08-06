@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/preview', upload.single('image'), (req, res) => {
   try {
     console.log(req.file.filename)
-    const url = `/img/${req.file.filename}`;
+    const url = `/uploads/${req.file.filename}`;
     res.json({ url });  
   } catch(err) {
     console.error(err);
