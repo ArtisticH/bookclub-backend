@@ -73,12 +73,6 @@ const sessionOption = {
 app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
 app.use('/api/guests', homeRouter);
 app.use('/auth', authRouter);
 app.use('/books', booksRouter);
@@ -100,7 +94,7 @@ app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
   res.status(err.status || 500);
-  res.render('error/error');
+  res.json('error/error');
 });
 
 app.listen(process.env.PORT, () => {
