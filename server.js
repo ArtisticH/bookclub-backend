@@ -32,7 +32,6 @@ const passportConfig = require('./passport');
 
 const app = express();
 passportConfig();
-app.set('port', 3001);
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-origin', 'https://web-bookclub-frontend-lzgqjytn6cca1780.sel4.cloudtype.app'); 
@@ -104,6 +103,6 @@ app.use((err, req, res, next) => {
   res.render('error/error');
 });
 
-app.listen(app.get('port'), () => {
+app.listen(process.env.PORT, () => {
   console.log(`${app.get('port')}에서 실행 중...`);
 })
