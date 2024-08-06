@@ -3,14 +3,14 @@
     "username": "root",
     "password": "hannamysql",
     "database": "bookclub",
-    "host": "127.0.0.1",
+    "host": "mariadb",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "hannamysql",
     "database": "bookclub",
-    "host": "127.0.0.1",
+    "host": "mariadb",
     "dialect": "mysql"
   },
   "production": {
