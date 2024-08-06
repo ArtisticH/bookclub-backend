@@ -8,7 +8,7 @@ const { createClient } = require('redis');
 const RedisStore = require('connect-redis').default;
 const dotenv = require('dotenv');
 dotenv.config();
-const cors = require('cors');
+// const cors = require('cors');
 
 const redisClient = createClient({
   url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
@@ -73,7 +73,7 @@ const sessionOption = {
 app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/', homeRouter);
+app.use('/home', homeRouter);
 app.use('/auth', authRouter);
 app.use('/books', booksRouter);
 app.use('/members', memberRouter);
