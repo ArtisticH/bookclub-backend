@@ -7,7 +7,7 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/home', async (req, res) => {
+router.get('/api/guests/home', async (req, res) => {
   const members = await Member.findAll({
     where: { type: 'MEMBER' },
     attributes: ['id', 'nick'],

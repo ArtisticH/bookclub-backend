@@ -73,7 +73,7 @@ const sessionOption = {
 app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/api/guests', homeRouter);
+app.use('/', homeRouter);
 app.use('/auth', authRouter);
 app.use('/books', booksRouter);
 app.use('/members', memberRouter);
